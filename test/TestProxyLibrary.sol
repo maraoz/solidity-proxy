@@ -25,6 +25,8 @@ contract SampleLib2 {
 }
 
 
+
+// from: http://truffleframework.com/tutorials/testing-for-throws-in-solidity-tests
 contract ProxyV1 {
   address public target;
   bytes data;
@@ -43,7 +45,7 @@ contract ProxyV1 {
 }
 
 
-
+// from: https://gist.github.com/Arachnid/4ca9da48d51e23e5cfe0f0e14dd6318f
 contract ProxyV2 {
   address target;
   
@@ -62,7 +64,7 @@ contract ProxyV2 {
   }
 }
 
-
+// from: http://martin.swende.se/blog/EVM-Assembly-trick.html
 contract ProxyV3 {
   address target;
   
