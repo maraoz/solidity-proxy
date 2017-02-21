@@ -1,32 +1,35 @@
-/*
-contract TestProxyLibrary {
-  function testReturn() {
-    Example lib = new Example();
-    Dispatcher dispatcher = new Dispatcher(address(lib));
-
-    // uint ret = SampleLib(proxy).foo();
-    Assert.equal(address(this), address(this), "Should be 42");
-  }
-}
-*/
-
 const Example = artifacts.require("./Example.sol")
 const Example2 = artifacts.require("./Example2.sol");
 const Dispatcher = artifacts.require("Dispatcher.sol");
+const DispatcherStorage = artifacts.require("DispatcherStorage.sol");
+const TheContract = artifacts.require("TheContract.sol");
 
 contract('TestProxyLibrary', () => {
   describe('test', () => {
     it('works', () => {
       Example.new()
-        .then(example => Dispatcher.new(example.address))
+        .then(example => DispatcherStorage.new(example.address))
         .then(d => {
-          dispatcher = d
-          return Example.at(dispatcher.address).setUint(1010101)
+          dispatcherStorage = d
+          Dispatcher.unlinked_binary = Dispatcher.unlinked_binary.replace('1111222233334444555566667777888899990000', dispatcherStorage.address.slice(2))
+          return Dispatcher.new()
         })
-        .then(() => Example2.new())
-        .then(newExample => dispatcher.replace(newExample.address))
-        .then(() => Example.at(dispatcher.address).getUint.call())
-        .then(console.log)
+        .then(dispatcher => {
+          console.log(dispatcher.address)
+          TheContract.link('LibInterface', dispatcher.address)
+          return TheContract.new()
+        })
+        .then(c => {
+          thecontract = c
+          return thecontract.get.call()
+        })
+        .then(x => {
+          console.log(x.toNumber())
+          return Example2.new()
+        })
+        .then(newExample => dispatcherStorage.replace(newExample.address))
+        .then(() => thecontract.get.call())
+        .then(x => console.log(x.toNumber()))
     })
   })
 })

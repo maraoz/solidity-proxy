@@ -1,0 +1,63 @@
+{
+  "contract_name": "DispatcherStorage",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": "bytes4"
+        }
+      ],
+      "name": "sizes",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint32"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "lib",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "newLib",
+          "type": "address"
+        }
+      ],
+      "name": "replace",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "name": "newLib",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "constructor"
+    }
+  ],
+  "unlinked_binary": "0x6060604052346100005760405160208061021f83398101604052515b604080517f67657455696e7428290000000000000000000000000000000000000000000000815281519081900360090190207fffffffff0000000000000000000000000000000000000000000000000000000016600090815260016020908152919020805463ffffffff191690911790556100a2816401000000006100f06100a982021704565b5b506100c8565b60008054600160a060020a031916600160a060020a0383161790555b50565b610148806100d76000396000f300606060405263ffffffff60e060020a600035041663206bd362811461003a5780639280123014610085578063cabfb934146100ae575b610000565b346100005761006c7fffffffff00000000000000000000000000000000000000000000000000000000600435166100c9565b6040805163ffffffff9092168252519081900360200190f35b34610000576100926100e1565b60408051600160a060020a039092168252519081900360200190f35b34610000576100c7600160a060020a03600435166100f0565b005b60016020526000908152604090205463ffffffff1681565b600054600160a060020a031681565b6000805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0383161790555b505600a165627a7a723058206136c59ec27d938e17de62a1ddf32a3d86760bcee27b05fc975dbdf84803e12d0029",
+  "networks": {},
+  "schema_version": "0.0.5",
+  "updated_at": 1487713606064
+}
