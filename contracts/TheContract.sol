@@ -1,10 +1,10 @@
 pragma solidity ^0.4.8;
 
-import "./Dispatcher.sol";
 import "./LibInterface.sol";
 
-contract TheContract is Upgradeable {
-  //LibInterface.S s;
+contract TheContract {
+  LibInterface.S s;
+  int8 hola;
 
   using LibInterface for uint;
 
