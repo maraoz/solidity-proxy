@@ -15,20 +15,16 @@ contract('TestProxyLibrary', () => {
           return Dispatcher.new()
         })
         .then(dispatcher => {
-          console.log(dispatcher.address)
           TheContract.link('LibInterface', dispatcher.address)
           return TheContract.new()
         })
         .then(c => {
           thecontract = c
-          return thecontract.get.call()
+          return thecontract.set(10)
         })
-        .then(x => {
-          console.log(x.toNumber())
-          return Example2.new()
-        })
+        .then(() => Example2.new())
         .then(newExample => dispatcherStorage.replace(newExample.address))
-        .then(() => thecontract.get.call())
+        .then(() => thecontract.get())
         .then(x => console.log(x.toNumber()))
     })
   })

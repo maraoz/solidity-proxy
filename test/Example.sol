@@ -1,11 +1,12 @@
 pragma solidity ^0.4.8;
 
-import "../contracts/Dispatcher.sol";
+import "../contracts/LibInterface.sol";
 
-contract Example {
-  function getUint() returns (uint) {
-      return 8;
+library Example {
+  function getUint(LibInterface.S storage s) returns (uint) {
+    return s.i;
   }
-
-  function setUint(uint value) {}
+  function setUint(LibInterface.S storage s, uint i) {
+    s.i = i;
+  }
 }
