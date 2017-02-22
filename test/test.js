@@ -25,7 +25,7 @@ contract('TestProxyLibrary', () => {
         .then(() => Example2.new())
         .then(newExample => dispatcherStorage.replace(newExample.address))
         .then(() => thecontract.get())
-        .then(x => console.log(x.toNumber()))
+        .then(x => assert.equal(x, 10 * 10)) // Example 2 getter multiplies
     })
   })
 })
