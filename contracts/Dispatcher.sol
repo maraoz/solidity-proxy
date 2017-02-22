@@ -4,11 +4,8 @@ import "./DispatcherStorage.sol";
 
 contract Dispatcher {
   function() {
-    bytes4 sig;
-    assembly { sig := calldataload(0) }
-
     DispatcherStorage dispatcherStorage = DispatcherStorage(0x1111222233334444555566667777888899990000);
-    uint32 len = dispatcherStorage.sizes(sig);
+    uint32 len = dispatcherStorage.sizes(msg.sig);
     address target = dispatcherStorage.lib();
 
     assembly {
