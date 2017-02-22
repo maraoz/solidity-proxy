@@ -3,7 +3,12 @@
   "abi": [
     {
       "constant": false,
-      "inputs": [],
+      "inputs": [
+        {
+          "name": "s",
+          "type": "LibInterface.S storage"
+        }
+      ],
       "name": "getUint",
       "outputs": [
         {
@@ -18,7 +23,11 @@
       "constant": false,
       "inputs": [
         {
-          "name": "u",
+          "name": "s",
+          "type": "LibInterface.S storage"
+        },
+        {
+          "name": "i",
           "type": "uint256"
         }
       ],
@@ -30,5 +39,5 @@
   ],
   "networks": {},
   "schema_version": "0.0.5",
-  "updated_at": 1487713606064
+  "updated_at": 1487714724707
 }

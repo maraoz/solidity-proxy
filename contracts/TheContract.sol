@@ -4,11 +4,14 @@ import "./LibInterface.sol";
 
 contract TheContract {
   LibInterface.S s;
-  int8 hola;
 
-  using LibInterface for uint;
+  using LibInterface for LibInterface.S;
 
-  function get() returns (uint) {
-    return LibInterface.getUint();
+  function get() constant returns (uint) {
+    return s.getUint();
+  }
+
+  function set(uint i) {
+    return s.setUint(i);
   }
 }
