@@ -1,6 +1,6 @@
 pragma solidity ^0.4.8;
 
-library LibInterface {
+library LibNoProxy {
   struct S { uint i; }
 
   function getUint(S storage s) returns (uint);
