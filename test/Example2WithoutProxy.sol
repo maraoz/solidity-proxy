@@ -1,13 +1,13 @@
 pragma solidity ^0.4.8;
 
-library Example2WithoutProxy {
+contract Example2WithoutProxy {
   uint i;
 
-  function getUint() returns (uint) {
+  function getUint() public constant returns (uint) {
     return i * 10;
   }
 
-  function setUint(uint _i) {
+  function setUint(uint _i) public {
     i = _i;
   }
 }
