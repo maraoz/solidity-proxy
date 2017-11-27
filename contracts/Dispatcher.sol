@@ -3,7 +3,7 @@ pragma solidity ^0.4.8;
 import "./DispatcherStorage.sol";
 
 contract Dispatcher {
-  function() {
+  function() public {
     DispatcherStorage dispatcherStorage = DispatcherStorage(0x1111222233334444555566667777888899990000);
     uint32 len = dispatcherStorage.sizes(msg.sig);
     address target = dispatcherStorage.lib();
