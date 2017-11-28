@@ -8,31 +8,37 @@ const TheContract = artifacts.require('TheContract.sol');
 
 contract('TestProxyLibrary', () => {
   describe('test', () => {
-    it('works', () => {
+    it('works', (done) => {
       var thecontract, dispatcherStorage;
       Example.new()
-        .then(example => DispatcherStorage.new(example.address))
-        .then(d => {
-          dispatcherStorage = d;
-          Dispatcher.unlinked_binary = Dispatcher.unlinked_binary
-            .replace('1111222233334444555566667777888899990000',
-            dispatcherStorage.address.slice(2));
-          return Dispatcher.new();
-        })
-        .then(dispatcher => {
-          TheContract.link('LibInterface', dispatcher.address);
-          return TheContract.new();
-        })
-        .then(c => {
-          thecontract = c;
-          return thecontract.set(10);
-        })
-        .then(() => Example2.new())
-        .then(newExample => dispatcherStorage.replace(newExample.address))
-        .then(() => thecontract.get())
-        .then(x => assert.equal(x, 10 * 10)); // Example 2 getter multiplies
+          .then(example => DispatcherStorage.new(example.address))
+          .then(d => {
+            dispatcherStorage = d;
+            Dispatcher.unlinked_binary = Dispatcher.unlinked_binary
+                .replace('1111222233334444555566667777888899990000',
+                    dispatcherStorage.address.slice(2));
+            return Dispatcher.new();
+          })
+          .then(dispatcher => {
+            TheContract.link('LibInterface', dispatcher.address);
+            return TheContract.new();
+          })
+          .then(c => {
+            thecontract = c;
+            return thecontract.set(10);
+          })
+          .then(() => thecontract.get())
+          .then(x => assert.equal(x.toNumber(), 10))// Example return not multiplies
+          .then(() => Example2.new())
+          .then(newExample => dispatcherStorage.replace(newExample.address))
+          .then(() => thecontract.get())
+          .then(x => {
+            assert.equal(x.toNumber(), 10 * 10);// Example 2 getter multiplies
+            done();
+          });
     });
-    it.only('measure gas costs', () => {
+    it('measure gas costs', (done) => {
+      done();
     });
   });
 });

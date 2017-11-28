@@ -9,7 +9,7 @@ contract DispatcherStorage {
     replace(newLib);
   }
 
-  function replace(address newLib) internal /* onlyDAO */ {
+  function replace(address newLib) public /* onlyDAO */ {
     lib = newLib;
   }
 }
