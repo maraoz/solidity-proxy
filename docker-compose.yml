@@ -1,0 +1,10 @@
+version: "3"
+services:
+  solidity-proxy:
+    build:
+      context: .
+      args:
+        USER_NAME: app
+    volumes:
+      - .:/opt/work
+
