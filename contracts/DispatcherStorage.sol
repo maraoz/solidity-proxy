@@ -1,6 +1,7 @@
 pragma solidity ^0.4.8;
 
-contract DispatcherStorage {
+import "zeppelin-solidity/contracts/ownership/Ownable.sol";
+contract DispatcherStorage is Ownable {
   address public lib;
   mapping(bytes4 => uint32) public sizes;
 
@@ -9,7 +10,7 @@ contract DispatcherStorage {
     replace(newLib);
   }
 
-  function replace(address newLib) public /* onlyDAO */ {
+  function replace(address newLib) public onlyOwner /* onlyDAO */ {
     lib = newLib;
   }
 }
