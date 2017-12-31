@@ -6,6 +6,7 @@ const {
 } = lkTestHelpers(web3)
 
 const Example = artifacts.require('./Example.sol')
+const ExampleReverts = artifacts.require('./ExampleReverts.sol')
 const Example2 = artifacts.require('./Example2.sol')
 const Dispatcher = artifacts.require('Dispatcher.sol')
 const DispatcherStorage = artifacts.require('DispatcherStorage.sol')
@@ -30,6 +31,10 @@ contract('TestProxyLibrary', (accounts) => {
       await dispatcherStorage.replace(example2.address)
       const x2 = await thecontract.get()
       assert.equal(x2.toNumber(), 10 * 10);// Example2 return 10 multiplies
+
+      const exampleReverts = await ExampleReverts.new()
+      await dispatcherStorage.replace(exampleReverts.address)
+      await expectThrow(thecontract.get())
     });
     it('measure gas costs', (done) => {
       done();
