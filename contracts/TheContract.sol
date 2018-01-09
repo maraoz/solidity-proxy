@@ -7,11 +7,11 @@ contract TheContract {
 
   using LibInterface for LibInterface.S;
 
-  function get() constant returns (uint) {
+  function get() public constant returns (uint) {
     return s.getUint();
   }
 
-  function set(uint i) {
+  function set(uint i) public {
     return s.setUint(i);
   }
 }
